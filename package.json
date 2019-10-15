@@ -1,0 +1,23 @@
+{
+    "name": "update-partitions",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "config": {
+        "profile": "default",
+        "region": "us-east-1"
+    },
+    "scripts": {
+        "predeploy": "zip -r /tmp/update-partitions.zip .",
+        "postdeploy": "rm -rf /tmp/update-partitions.zip",
+        "deploy": "aws lambda update-function-code --region $npm_package_config_region --profile $npm_package_config_profile --function-name $npm_package_name --zip-file fileb:///tmp/update-partitions.zip",
+        "local": "node local.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "moment": "^2.9.0",
+        "moment-timezone": "^0.5.26",
+        "serverless-mysql": "^1.5.1"
+    }
+}
